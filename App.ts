@@ -2,8 +2,8 @@ import { Application, Router } from 'https://deno.land/x/oak/mod.ts';
 import { BookShelf } from './BookShelf.ts';
       
 const env = Deno.env.toObject();
-const PORT = env.PORT || 5050;
-const HOST = env.HOST || '127.0.0.1';
+const PORT = env.PORT || '5050';
+//const HOST = env.HOST || '127.0.0.1';
 const router = new Router();
 const bookShelf = new BookShelf();
 
@@ -27,7 +27,8 @@ const app = new Application();
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-console.log(`Server: ${PORT}`)
+//console.log(`Server: ${HOST}`)
 console.log(`Listening on port ${PORT}...`);
 
-await app.listen(`${HOST}:${PORT}`);
+//await app.listen(`${HOST}:${PORT}`);
+await app.listen({port: Number(PORT)});
